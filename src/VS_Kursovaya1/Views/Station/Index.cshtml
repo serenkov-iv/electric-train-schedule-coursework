@@ -1,0 +1,32 @@
+﻿@model IEnumerable<VS_Kursovaya1.Models.Station>
+
+@{
+    ViewData["Title"] = "Станции";
+}
+
+<h1 class="mb-4">Станции</h1>
+
+<table class="table table-striped table-bordered">
+
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Название станции</th>
+            <th>Город</th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+        @foreach (var station in Model)
+        {
+            <tr>
+                <td>@station.StationId</td>
+                <td>@station.StationName</td>
+                <td>@station.City</td>
+            </tr>
+        }
+
+    </tbody>
+
+</table>

@@ -1,0 +1,67 @@
+﻿@model IEnumerable<VS_Kursovaya1.Models.VScheduleFull>
+
+@{
+    ViewData["Title"] = "Расписание электричек";
+}
+
+<h1 class="mb-4">Расписание электричек</h1>
+
+<form method="get" class="mb-4">
+    <div class="input-group">
+        <input type="text"
+               name="search"
+               value="@ViewBag.Search"
+               class="form-control"
+               placeholder="Введите станцию, город или номер поезда" />
+
+        <button class="btn btn-primary" type="submit">
+            Найти
+        </button>
+
+        <a class="btn btn-secondary"
+           asp-controller="Schedule"
+           asp-action="Index">
+            Сбросить
+        </a>
+    </div>
+</form>
+
+<form method="get">
+    <input type="text"
+           name="search"
+           class="form-control mb-3"
+           placeholder="Введите станцию">
+</form>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>№ поезда</th>
+            <th>Название</th>
+            <th>Откуда</th>
+            <th>Куда</th>
+            <th>Отправление</th>
+            <th>Прибытие</th>
+            <th>Дни</th>
+            <th>Расстояние, км</th>
+            <th>В пути, мин</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.TrainNumber</td>
+                <td>@item.TrainName</td>
+                <td>@item.DepartureStation, @item.DepartureCity</td>
+                <td>@item.ArrivalStation, @item.ArrivalCity</td>
+                <td>@item.DepartureTime</td>
+                <td>@item.ArrivalTime</td>
+                <td>@item.DaysOfWeek</td>
+                <td>@item.DistanceKm</td>
+                <td>@Math.Round(item.DurationMinutes ?? 0)</td>
+            </tr>
+        }
+    </tbody>
+</table>

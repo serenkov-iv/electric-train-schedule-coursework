@@ -1,0 +1,33 @@
+﻿@{
+    ViewData["Title"] = "Главная";
+}
+
+<div class="text-center mt-5">
+    <h1 class="display-4 mb-4">Веб-портал расписания электричек</h1>
+
+    <p class="lead mb-5">
+        Система предназначена для просмотра расписания пригородных поездов,
+        станций и информации о рейсах.
+    </p>
+
+    <div class="d-flex justify-content-center gap-3 flex-wrap">
+
+        <a class="btn btn-primary btn-lg"
+           asp-controller="Schedule"
+           asp-action="Index">
+            Расписание
+        </a>
+
+        <a class="btn btn-success btn-lg"
+           asp-controller="Station"
+           asp-action="Index">
+            Станции
+        </a>
+
+        <a class="btn btn-warning btn-lg"
+           asp-controller="Status"
+           asp-action="Index">
+            Статусы рейсов
+        </a>
+    </div>
+</div>

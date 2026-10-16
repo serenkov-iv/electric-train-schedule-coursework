@@ -1,0 +1,53 @@
+﻿@model IEnumerable<VS_Kursovaya1.Models.VTodayStatus>
+
+@{
+    ViewData["Title"] = "Статусы рейсов";
+}
+
+<h1 class="mb-4">Статусы рейсов</h1>
+
+<table class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>№ поезда</th>
+            <th>Название</th>
+            <th>Откуда</th>
+            <th>Куда</th>
+            <th>План отправления</th>
+            <th>План прибытия</th>
+            <th>Статус</th>
+            <th>Опоздание, мин</th>
+            <th>Факт. отправление</th>
+            <th>Примечание</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.TrainNumber</td>
+                <td>@item.TrainName</td>
+                <td>@item.DepartureStation</td>
+                <td>@item.ArrivalStation</td>
+                <td>@item.ScheduledDeparture</td>
+                <td>@item.ScheduledArrival</td>
+                <td>
+                    @{
+                        var statusText = item.Status switch
+                        {
+                            "on_time" => "По расписанию",
+                            "delayed" => "Задержан",
+                            "cancelled" => "Отменен",
+                            _ => item.Status
+                        };
+                    }
+                    @statusText
+                </td>
+                <td>@(item.DelayMinutes ?? 0)</td>
+                <td>@item.ActualDeparture</td>
+                <td>@item.Note</td>
+            </tr>
+        }
+    </tbody>
+</table>
